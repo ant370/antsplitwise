@@ -9,6 +9,7 @@ dotenv.config();
 
 const KEY = process.env.SPLITWISE_KEY;
 const SECRET = process.env.SPLITWISE_SECRET;
+const GROUP_NAME = process.env.GROUP_NAME;
 
  
 const sw = Splitwise({
@@ -17,11 +18,10 @@ const sw = Splitwise({
 });
 
  
- 
-const groupName = "Sexy Handsomes ";
+  
 const groupId =  sw.getGroups()
     .then(p => {  
-      const sexyHandsomeGroup = p.filter(q => q.name == groupName); 
+      const sexyHandsomeGroup = p.filter(q => q.name == GROUP_NAME); 
       return sexyHandsomeGroup[0].id;
 
     })
@@ -33,10 +33,11 @@ const groupId =  sw.getGroups()
       sw.getExpenses({ id: groupId, limit: 1000 })
         .then(expenses => 
           {
+            var i = 0;
             for (expense in expenses)
             {
               const exp = expenses[expense];
-              console.log(`"willem","${exp.description}","${exp.cost}","${exp.date}"`);
+              console.log(`"${exp.id}","${exp.description}","${exp.cost}","${exp.date}"`);
             }
           });
  
