@@ -3,7 +3,7 @@
         "target": "es5",
         "module": "commonjs"
     },
-    "exclude": [
+    "include": [
       "node_modules"
     ]
 }

@@ -1,11 +1,20 @@
  
 
 const Splitwise = require('splitwise')
+const dotenv = require('dotenv')
+
+console.log(process.env)
+
+dotenv.config();
+
+const KEY = process.env.SPLITWISE_KEY;
+const SECRET = process.env.SPLITWISE_SECRET;
+
  
 const sw = Splitwise({
-  consumerKey: 'hWpblmx32iF3Q9yI7iBBkCMpNIG76G67xFZB2Dwy',
-  consumerSecret: '4CYy9hDRyUaJPCsQopkm9lCNMAaxki83e8OKjThz'
-})
+  consumerKey: KEY,
+  consumerSecret: SECRET
+});
 
  
  
@@ -27,7 +36,7 @@ const groupId =  sw.getGroups()
             for (expense in expenses)
             {
               const exp = expenses[expense];
-              console.log(`"${exp.description}","${exp.cost}","${exp.date}"`);
+              console.log(`"willem","${exp.description}","${exp.cost}","${exp.date}"`);
             }
           });
  
